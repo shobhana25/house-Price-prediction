@@ -1,0 +1,30 @@
+import numpy as np
+from flask import Flask,request,render_template
+import joblib
+import pickle
+app = Flask(__name__)
+model = pickle.load(open('abcd.pkl','rb'))
+@app.route('/')
+def home():
+    return render_template('index.html')
+@app.route('/predict',methods=['POST'])
+def predict():
+    for k in request.form.values():
+        print(k)
+    int_features = [int(x) for x in request.form.values()]
+    final_predictions = [np.array(int_features)]
+    prediction = model.predict(final_predictions)
+    output = round(prediction[0],2)
+    #print('value:' + str(prediction))
+    #outputt = prediction[0]
+    output = output/100
+    value = str(output).encode('utf-8','ignore')
+    # print('value')
+    # print(value)
+    # print(output)
+    print("hello world")
+    mystr = "Predicted price is "+str(output)
+    print(mystr)
+    return render_template('index.html',prediction_text=mystr)
+if __name__ == "__main__":
+    app.run(debug=True)
