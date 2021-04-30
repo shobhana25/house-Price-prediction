@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Predictor ML App</title>
+
+    <style>
+        body {
+            background-image: url('https://assets.wallpapersin4k.org/uploads/2017/04/Real-Estate-Wallpaper-Backgrounds-8.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        
+        label {
+            display: inline-block;
+            width: 220px;
+            text-align: right;
+        }
+        
+        ​ h1 {
+            color: blueviolet;
+        }
+        
+        p {
+            color: yellow;
+        }
+        
+        .button_css {
+            color: #494949 !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 20px;
+            border: 4px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+        }
+        
+        .button_css:hover {
+            color: #ffffff !important;
+            background: #f6b93b;
+            border-color: #f6b93b !important;
+            transition: all 0.4s ease 0s;
+        }
+        
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #203864;
+            color: white;
+            text-align: center;
+        }
+        
+        .logo {
+            background: url("C:\codef\ML Project\templates\SmartSelect_20210430-120851_Chrome.jpg");
+            padding: 0px;
+            margin: 0px;
+            width: 150px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="logo">
+
+    </div>
+
+
+    <div class="login">
+
+
+        <center>
+            <form action="{{ url_for('predict')}}" method="post">
+                <h1>Enter the Information given below for house price prediction</h1>
+                <label>Enter Land_size(in sqm)</label>
+                <input align="center" type="number" name="Land_size(in sqm)" required="required" width="55" height="10" /><br><br>
+
+                <label>Enter House_size(in sqm)</label>
+                <input align="center" type="number" name="house_size" required="required" width="55" height="10" /><br><br>
+
+                <label>Enter no. of rooms</label>
+                <input align="center" type="number" name="no_rooms" required="required" width="55" height="10" /><br><br>
+
+                <label>Enter no. of bathrooms</label>
+                <input align="center" type="number" name="no_bathrooms" required="required" width="55" height="10" /><br><br>
+
+                <label>Is the living room large? yes-1 no-0</label>
+                <input align="center" type="number" name="large_livingroom" required="required" width="55" height="10" /><br><br>
+
+                <label>Is parking available? yes-1 no-0</label>
+                <input align="center" type="number" name="parking" required="required" width="55" height="10" /><br><br>
+
+                <label>Is there a garden? yes-1 no-0</label>
+                <input align="center" type="number" name="front_garden" required="required" width="55" height="10" /><br><br>
+
+                <label>Is a swimming pool available? yes-1 no-0</label>
+                <input align="center" type="number" name="swimming_pool" required="required" width="55" height="10" /><br><br>
+
+                <label>Distance from school(in sqm)</label>
+                <input align="center" type="number" name="distance_to_school" required="required" width="55" height="10" /><br><br>
+
+                <label>Is the wall fenced? yes-1 no-0</label>
+                <input align="center" type="number" name="wall_fence" required="required" width="55" height="10" /><br><br>
+
+                <label>How old is the house?(in yrs)</label>
+                <input align="center" type="number" name="house_age" required="required" width="55" height="10" /><br><br>
+
+                <label>Does the property have a water view? yes-1 no-0</label>
+                <input align="center" type="number" name="water_front" required="required" width="55" height="10" /><br><br>
+
+                <label>Distance from supermarket?</label>
+                <input align="center" type="number" name="distance_to_supermarket" required="required" width="55" height="10" /><br>
+
+
+                <br>
+
+                <br>
+
+                <!-- Show button -->
+                <div class="button_cont" align="center">
+                    <a class="button_css">
+                        <button type="submit" class="btn btn-primary btn-block btn-large">
+                            <strong>Predict House Price</strong>
+                        </button>
+                    </a>
+                </div>
+
+            </form>
+        </center>
+
+        <!-- Show predicted output using ML model -->
+        <div>
+            <center>
+                <h2>{{ prediction_text }}</h2>
+            </center>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
